@@ -6,10 +6,21 @@ Project 1 - The Number Guessing Game
 
 # Import the random module.
 import random
-# Create the start_game function.
 
-# Write your code inside this function.
+# Adding a list of responces to incorrect guesses
+try_again_responses_greater = ['Not quite, please try again. The number is greater than that.',
+                               'So close, try again. Just a little higher.',
+                               'Do not give up yet, keep going. Try something bigger',
+                               'So sorry, keep trying. It is greater than that',
+                               'Keep going you will get it soon. Guess a bigger number',]
+try_again_responses_less = ['Not quite, please try again. The number is less than that.',
+                               'So close, try again. Just a little lower.',
+                               'Do not give up yet, keep going. Try something smaller',
+                               'So sorry, keep trying. It is less than that',
+                               'Keep going you will get it soon. Guess a smaller number',]
+# Create the start_game function.
 def start_game():
+    # Write your code inside this function.
     #   When the program starts, we want to:
     #   ------------------------------------
     #   1. Display an intro/welcome message to the player.
@@ -27,26 +38,33 @@ def start_game():
     print("|\n|")
     print("""Welcome, {}!!! This is the "Number Guessr" game.""".format(name))
     print("|\n|")
-    
-    number = random.randrange(1, 11)
-    
-    guess = int(input("Pick a number between 1-10.  "))
-    
-    while guess != number:
-        guess = int(input("Not quite, please try again.  "))
-    
-    while guess == number:
-        print("Congradulations!!! You are a great guesser! The number is {}.".format(number))
+    while True:
+        number = random.randrange(1, 11)
+        
+        guess = int(input("Pick a number between 1-10.  "))
+        
+        while guess != number:
+            incorrect_responses_greater = random.choice(try_again_responses_greater)
+            incorrect_responses_less = random.choice(try_again_responses_less)
+            if number > guess:
+                guess = int(input("{}  ".format(incorrect_responses_greater)))
+            elif number < guess:
+                guess = int(input("{}  ".format(incorrect_responses_less)))
+        
+        while guess == number:
+            print("Congradulations!!! You are a great guesser! The number is {}.".format(number))
 
-        play_again = input("{}, would you like to play again? (Yes/No)  ".format(name))
-
-        if play_again.lower() == 'yes':
-            guess = int(input("Pick a number between 1-10.  "))
-        elif play_again.lower() == 'no':
-            print("Thank you for playing {}. See you next time!!!".format(name))
-        else:
-            print("Sorry, please answer with (Yes/No)")
             play_again = input("{}, would you like to play again? (Yes/No)  ".format(name))
+
+            if play_again.lower() == 'yes':
+                guess = int(input("Pick a number between 1-10.  "))
+            elif play_again.lower() == 'no':
+                print("Thank you for playing {}. See you next time!!!".format(name))
+                break
+                
+            else:
+                print("Sorry, please answer with (Yes/No)")
+                play_again = input("{}, would you like to play again? (Yes/No)  ".format(name))
                   
 
 # Kick off the program by calling the start_game function.
