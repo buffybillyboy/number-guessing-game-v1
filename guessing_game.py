@@ -40,31 +40,46 @@ def start_game():
     print("|\n|")
     while True:
         number = random.randrange(1, 11)
-        
-        guess = int(input("Pick a number between 1-10.  "))
-        
-        while guess != number:
-            incorrect_responses_greater = random.choice(try_again_responses_greater)
-            incorrect_responses_less = random.choice(try_again_responses_less)
-            if number > guess:
-                guess = int(input("{}  ".format(incorrect_responses_greater)))
-            elif number < guess:
-                guess = int(input("{}  ".format(incorrect_responses_less)))
-        
-        while guess == number:
-            print("Congradulations!!! You are a great guesser! The number is {}.".format(number))
+        value_error_response = '\nUh oh! It seems like you inputed an invalid answer, \nplease try again and put an integer for a number.'
 
-            play_again = input("{}, would you like to play again? (Yes/No)  ".format(name))
+        try:
+            guess = int(input("Pick a number between 1-10.  "))
+            attempts = 1
+        except ValueError:
+            print("{}".format(value_error_response))
+        else:
 
-            if play_again.lower() == 'yes':
-                guess = int(input("Pick a number between 1-10.  "))
-            elif play_again.lower() == 'no':
-                print("Thank you for playing {}. See you next time!!!".format(name))
-                break
-                
-            else:
-                print("Sorry, please answer with (Yes/No)")
-                play_again = input("{}, would you like to play again? (Yes/No)  ".format(name))
+        
+            while guess != number:
+                attempts += 1
+                incorrect_responses_greater = random.choice(try_again_responses_greater)
+                incorrect_responses_less = random.choice(try_again_responses_less)
+                if number > guess:
+                    try:
+                        guess = int(input("\n{}  ".format(incorrect_responses_greater)))
+                    except ValueError:
+                        print("{}".format(value_error_response))
+                elif number < guess:
+                    try:
+                        guess = int(input("\n{}  ".format(incorrect_responses_less)))
+                    except ValueError:
+                        print("{}".format(value_error_response))
+                    
+            
+            if guess == number:
+                print("\nCongradulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps.".format(number, attempts))
+
+                play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
+
+                if play_again.lower() == 'yes':
+                    continue
+                elif play_again.lower() == 'no':
+                    print("\nThank you for playing {}. See you next time!!!".format(name))
+                    break
+                    
+                else:
+                    print("\nSorry, please answer with Yes/No")
+                    play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                   
 
 # Kick off the program by calling the start_game function.
