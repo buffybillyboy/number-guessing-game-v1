@@ -90,7 +90,7 @@ def start_game():
                 elif high_score > attempts:
                     high_score = attempts
                     print("\nYay! You have a new high score! It is {}.".format(high_score))
-                print("\nCongradulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps. Your high score is {}.".format(number, attempts, high_score))
+                print("\nCongratulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps. Your high score is {}.".format(number, attempts, high_score))
                 # This variable asks the user if they would like to play again
                 play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                 # This while loop prevents bugs from happening based on the users response
