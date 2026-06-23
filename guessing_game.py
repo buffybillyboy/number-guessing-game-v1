@@ -49,8 +49,9 @@ def start_game():
                 # Adding some variables that randomize the output of the incorrect responses list for better user experience
                 incorrect_responses_greater = random.choice(try_again_responses_greater)
                 incorrect_responses_less = random.choice(try_again_responses_less)
+                out_of_range = 'Sorry, your guess is out of the range of this game. \nPlease guess a number between 1-10.'
+            
                 # Adding feedback to the user if their guess is out of range
-                out_of_range = 'Sorry, your guess is out of the range of this game. Please guess a number between 1-10.'
                 if guess > 10:
                     print("{}".format(out_of_range))
                     try:
@@ -66,7 +67,7 @@ def start_game():
                     except ValueError:
                         print("{}".format(value_error_response))
                 # This if statement deals with if the users guess is greater than the number genereated and prevents bugs
-                if number > guess:
+                elif number > guess:
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_greater)))
                         attempts += 1
