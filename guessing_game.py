@@ -4,7 +4,7 @@ Project 1 - The Number Guessing Game
 --------------------------------
 """
 
-# Import the random module.
+# Import random
 import random
 
 # Adding a list of responces to incorrect guesses
@@ -18,30 +18,24 @@ try_again_responses_less = ['Not quite, please try again. The number is less tha
                                'Do not give up yet, keep going. Try something smaller',
                                'So sorry, keep trying. It is less than that',
                                'Keep going you will get it soon. Guess a smaller number',]
-# Create the start_game function.
+# start_game function
 def start_game():
-    # Write your code inside this function.
-    #   When the program starts, we want to:
-    #   ------------------------------------
-    #   1. Display an intro/welcome message to the player.
-    #   2. Store a random number as the answer/solution.
-    #   3. Continuously prompt the player for a guess.
-    #     a. If the guess is greater than the solution, display to the player "It's lower".
-    #     b. If the guess is less than the solution, display to the player "It's higher".
 
-    #   4. Once the guess is correct, stop looping, inform the user they "Got it"
-    #      and show how many attempts it took them to get the correct number.
-    #   5. Let the player know the game is ending, or something that indicates the game is over.
-
-    # ( You can add more features/enhancements if you'd like to. )
+    # Asking the user their name
     name = input("What is your name?  ")
+    # Printing out a welcome
     print("|\n|")
     print("""Welcome, {}!!! This is the "Number Guessr" game.""".format(name))
     print("|\n|")
+
+
+    # Creating a loop so you can replay the game
     while True:
+        # Creating some variables to use in the loop
         number = random.randrange(1, 11)
         value_error_response = '\nUh oh! It seems like you inputed an invalid answer, \nplease try again and put an integer for a number.'
 
+        # Prompting user to guess a number while taking care of bugs
         try:
             guess = int(input("Pick a number between 1-10.  "))
             attempts = 1
@@ -49,16 +43,20 @@ def start_game():
             print("{}".format(value_error_response))
         else:
 
-        
+
+            # A loop that deals with the user guessing a wrong number
             while guess != number:
+                # Adding some variables that randomize the output of the incorrect responses list for better user experience
                 incorrect_responses_greater = random.choice(try_again_responses_greater)
                 incorrect_responses_less = random.choice(try_again_responses_less)
+                # This if statement deals with if the users guess is greater than the number genereated and prevents bugs
                 if number > guess:
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_greater)))
                         attempts += 1
                     except ValueError:
                         print("{}".format(value_error_response))
+                # This elif statement deals with if the users guess is less than the number genereated and prevents bugs
                 elif number < guess:
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_less)))
@@ -66,24 +64,25 @@ def start_game():
                     except ValueError:
                         print("{}".format(value_error_response))
                     
-            
+            # This if statement deals with when you user guesses correctly
             if guess == number:
                 print("\nCongradulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps.".format(number, attempts))
-
+                # This variable asks the user if they would like to play again
                 play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
-
+                # This while loop prevents bugs from happening based on the users response
                 while True:
+                    # This if statement deals with if the user wants to play again
                     if play_again.lower() == 'yes':
                         break
-
+                    # This elif statement deals with if the user does not want to play agian
                     elif play_again.lower() == 'no':
                         print("\nThank you for playing {}. See you next time!!!".format(name))
                         return
-                        
+                    # This else statement deals with if the user does not say 'yes' or 'no' when prompted if they want to play again   
                     else:
                         print("\nSorry, please answer with Yes/No")
                         play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                   
 
-# Kick off the program by calling the start_game function.
+# Calls start_game function
 start_game()
