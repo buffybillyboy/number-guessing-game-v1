@@ -21,6 +21,8 @@ try_again_responses_less = ['Not quite, please try again. The number is less tha
 # start_game function
 def start_game():
 
+    high_score = 0
+    
     # Asking the user their name
     name = input("What is your name?  ")
     # Printing out a welcome
@@ -83,7 +85,12 @@ def start_game():
                     
             # This if statement deals with when you user guesses correctly
             if guess == number:
-                print("\nCongradulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps.".format(number, attempts))
+                if high_score == 0:
+                    high_score = attempts
+                elif high_score > attempts:
+                    high_score = attempts
+                    print("\nYay! You have a new high score! It is {}.".format(high_score))
+                print("\nCongradulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps. Your high score is {}.".format(number, attempts, high_score))
                 # This variable asks the user if they would like to play again
                 play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                 # This while loop prevents bugs from happening based on the users response
