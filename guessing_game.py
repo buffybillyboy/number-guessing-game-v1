@@ -71,15 +71,17 @@ def start_game():
 
                 play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
 
-                if play_again.lower() == 'yes':
-                    continue
-                elif play_again.lower() == 'no':
-                    print("\nThank you for playing {}. See you next time!!!".format(name))
-                    break
-                    
-                else:
-                    print("\nSorry, please answer with Yes/No")
-                    play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
+                while True:
+                    if play_again.lower() == 'yes':
+                        break
+
+                    elif play_again.lower() == 'no':
+                        print("\nThank you for playing {}. See you next time!!!".format(name))
+                        return
+                        
+                    else:
+                        print("\nSorry, please answer with Yes/No")
+                        play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                   
 
 # Kick off the program by calling the start_game function.
