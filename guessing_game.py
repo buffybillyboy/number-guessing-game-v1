@@ -73,7 +73,6 @@ def start_game():
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_greater)))
                         attempts += 1
-                        break
                     except ValueError:
                         print("{}".format(value_error_response))
                 # This elif statement deals with if the users guess is less than the number genereated and prevents bugs
@@ -81,7 +80,6 @@ def start_game():
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_less)))
                         attempts += 1
-                        break
                     except ValueError:
                         print("{}".format(value_error_response))
                     
