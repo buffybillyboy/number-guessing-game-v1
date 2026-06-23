@@ -51,17 +51,18 @@ def start_game():
 
         
             while guess != number:
-                attempts += 1
                 incorrect_responses_greater = random.choice(try_again_responses_greater)
                 incorrect_responses_less = random.choice(try_again_responses_less)
                 if number > guess:
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_greater)))
+                        attempts += 1
                     except ValueError:
                         print("{}".format(value_error_response))
                 elif number < guess:
                     try:
                         guess = int(input("\n{}  ".format(incorrect_responses_less)))
+                        attempts += 1
                     except ValueError:
                         print("{}".format(value_error_response))
                     
