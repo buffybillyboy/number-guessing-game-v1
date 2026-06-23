@@ -35,7 +35,7 @@ def start_game():
     while True:
         # Creating some variables to use in the loop
         number = random.randrange(1, 11)
-        value_error_response = '\nUh oh! It seems like you inputed an invalid answer, \nplease try again and put an integer for a number.'
+        value_error_response = '\nUh oh! It seems like you entered an invalid answer, \nplease try again and put an integer for a number.'
 
         # Prompting user to guess a number while taking care of bugs
         try:
@@ -90,7 +90,7 @@ def start_game():
                 elif high_score > attempts:
                     high_score = attempts
                     print("\nYay! You have a new high score! It is {}.".format(high_score))
-                print("\nCongratulations!!! You are a great guesser! The number is {}. \nIt took you {} attemps. Your high score is {}.".format(number, attempts, high_score))
+                print("\nCongratulations!!! You are a great guesser! The number is {}. \nIt took you {} attempts. Your high score is {}.".format(number, attempts, high_score))
                 # This variable asks the user if they would like to play again
                 play_again = input("\n{}, would you like to play again? (Yes/No)  ".format(name))
                 # This while loop prevents bugs from happening based on the users response
