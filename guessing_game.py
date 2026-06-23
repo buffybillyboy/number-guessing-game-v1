@@ -39,7 +39,8 @@ def start_game():
 
         # Prompting user to guess a number while taking care of bugs
         try:
-            guess = int(input("Pick a number between 1-10.  "))
+            print("{}, your current high score is {}.".format(name, high_score))
+            guess = int(input("\nPick a number between 1-10.  "))
             attempts = 1
         except ValueError:
             print("{}".format(value_error_response))
